@@ -6,7 +6,7 @@
 /*   By: maguimar <maguimar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/05 12:05:03 by maguimar          #+#    #+#             */
-/*   Updated: 2022/12/05 14:15:22 by maguimar         ###   ########.fr       */
+/*   Updated: 2022/12/05 16:53:35 by maguimar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int	ft_printfd(long nb)
 	{
 		count += ft_printfc(nb + '0');
 	}
-	else if (nb >=10)
+	else if (nb >= 10)
 	{
 		count += ft_printfd(nb / 10);
 		count += ft_printfd(nb % 10);

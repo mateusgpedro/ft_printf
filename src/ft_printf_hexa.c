@@ -1,35 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strnstr.c                                       :+:      :+:    :+:   */
+/*   ft_printf_hexa.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: maguimar <maguimar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/07 10:55:44 by maguimar          #+#    #+#             */
-/*   Updated: 2022/11/08 16:38:52 by maguimar         ###   ########.fr       */
+/*   Created: 2022/12/05 15:50:25 by maguimar          #+#    #+#             */
+/*   Updated: 2022/12/05 16:18:55 by maguimar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../includes/ft_printf.h"
 
-char	*ft_strnstr(const char *big, const char *little, size_t len)
+int	ft_printf_hexa(char c, unsigned long nb)
 {
-	size_t	i;
-	size_t	j;
+	int		count;
+	char	*base;
 
-	if (!(*little))
-		return ((char *)big);
-	i = 0;
-	j = 0;
-	while (i < len && *(big + i) != '\0')
+	count = 0;
+	if (c == 'x')
+		base = "0123456789abcdef";
+	if (c == 'X')
+		base = "0123456789ABCDEF";
+	if (nb < 16)
+		count += ft_printfc(*(base + nb));
+	else if (nb >= 16)
 	{
-		while (*(big + i + j) == *(little + j)
-			&& *(little + j) != '\0' && *(big + i + j) != '\0' && i + j < len)
-			j++;
-		if (*(little + j) == '\0')
-			return ((char *)(big + i));
-		j = 0;
-		i++;
+		count += ft_printf_hexa(c, nb / 16);
+		count += ft_printf_hexa(c, nb % 16);
 	}
-	return (0);
+	return (count);
 }

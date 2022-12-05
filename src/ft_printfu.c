@@ -6,22 +6,22 @@
 /*   By: maguimar <maguimar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/05 13:49:23 by maguimar          #+#    #+#             */
-/*   Updated: 2022/12/05 13:59:04 by maguimar         ###   ########.fr       */
+/*   Updated: 2022/12/05 16:53:08 by maguimar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/ft_printf.h"
 
-int	ft_printfu(long nb)
+int	ft_printfu(unsigned int nb)
 {
-	int count;
+	int	count;
 
 	count = 0;
 	if (nb < 10)
 	{
-		count += ft_printfc(nb);
+		count += ft_printfc(nb + '0');
 	}
-	else if (nb >=10)
+	else if (nb >= 10)
 	{
 		count += ft_printfd(nb / 10);
 		count += ft_printfd(nb % 10);

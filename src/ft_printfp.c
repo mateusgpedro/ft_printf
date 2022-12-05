@@ -1,29 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strrchr.c                                       :+:      :+:    :+:   */
+/*   ft_printfp.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: maguimar <maguimar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/07 10:56:02 by maguimar          #+#    #+#             */
-/*   Updated: 2022/11/11 16:28:40 by maguimar         ###   ########.fr       */
+/*   Created: 2022/12/05 16:45:12 by maguimar          #+#    #+#             */
+/*   Updated: 2022/12/05 16:56:34 by maguimar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../includes/ft_printf.h"
 
-char	*ft_strrchr(const char *s, int c)
+int	ft_printfp(unsigned long nb)
 {
-	int	len;
+	int	count;
 
-	len = ft_strlen(s);
-	while (len >= 0)
-	{
-		if (s[len] == (char)c)
-			return (&((char *)s)[len]);
-		len--;
-	}
-	if (c == '\0')
-		return (&((char *)s)[len]);
-	return (NULL);
+	if (!nb)
+		return (write(1, "(nil)", 5));
+	write (1, "0x", 2);
+	count = ft_printf_hexa('x', nb);
+	return (count + 2);
 }
