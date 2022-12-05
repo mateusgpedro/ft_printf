@@ -1,24 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.h                                        :+:      :+:    :+:   */
+/*   ft_printfu.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: maguimar <maguimar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/28 14:00:45 by maguimar          #+#    #+#             */
-/*   Updated: 2022/12/05 13:01:39 by maguimar         ###   ########.fr       */
+/*   Created: 2022/12/05 13:49:23 by maguimar          #+#    #+#             */
+/*   Updated: 2022/12/05 13:59:04 by maguimar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_PRINTF_H
-# define FT_PRINTF_H
+#include "../includes/ft_printf.h"
 
-#include <stdarg.h>
-#include <unistd.h>
+int	ft_printfu(long nb)
+{
+	int count;
 
-int	ft_printf(const char *format, ...);
-int	ft_printfc(char str);
-int	ft_printfs(char *str);
-int	ft_printfd(long nb);
-
-#endif
+	count = 0;
+	if (nb < 10)
+	{
+		count += ft_printfc(nb);
+	}
+	else if (nb >=10)
+	{
+		count += ft_printfd(nb / 10);
+		count += ft_printfd(nb % 10);
+	}
+	return (count);
+}

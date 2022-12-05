@@ -6,20 +6,21 @@
 #    By: maguimar <maguimar@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/28 11:50:49 by maguimar          #+#    #+#              #
-#    Updated: 2022/11/28 11:57:07 by maguimar         ###   ########.fr        #
+#    Updated: 2022/12/05 14:19:57 by maguimar         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = libftprintf.a
 
-CC = CC
+CC = cc
 CFLAGS = -Wall -Wextra -Werror
 
-SRC =
+SRC = src/ft_printf.c src/ft_printfc.c src/ft_printfd.c src/ft_printfs.c \
+	src/ft_printfu.c
 
-OBJ = $(SRC:.c=.0)
+OBJ = $(SRC:.c=.o)
 
-all $(NAME)
+all: $(NAME)
 
 $(NAME) : $(OBJ)
 		ar rcs $(NAME) $(OBJ)

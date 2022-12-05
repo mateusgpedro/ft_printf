@@ -1,24 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.h                                        :+:      :+:    :+:   */
+/*   ft_printfs.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: maguimar <maguimar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/28 14:00:45 by maguimar          #+#    #+#             */
-/*   Updated: 2022/12/05 13:01:39 by maguimar         ###   ########.fr       */
+/*   Created: 2022/12/05 11:39:27 by maguimar          #+#    #+#             */
+/*   Updated: 2022/12/05 14:31:22 by maguimar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_PRINTF_H
-# define FT_PRINTF_H
+#include "../includes/ft_printf.h"
 
-#include <stdarg.h>
-#include <unistd.h>
+int	ft_printfs(char *str)
+{
+	int	i;
 
-int	ft_printf(const char *format, ...);
-int	ft_printfc(char str);
-int	ft_printfs(char *str);
-int	ft_printfd(long nb);
-
-#endif
+	i = 0;
+	if (!str)
+		write(1, "(null)", 6);
+	while (str[i])
+	{
+		write(1, &str[i], 1);
+		i++;
+	}
+	return (i);
+}

@@ -6,11 +6,63 @@
 /*   By: maguimar <maguimar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/28 11:57:35 by maguimar          #+#    #+#             */
-/*   Updated: 2022/11/28 13:52:25 by maguimar         ###   ########.fr       */
+/*   Updated: 2022/12/05 14:21:03 by maguimar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	ft_printf(const char *str)
-{
+#include "../includes/ft_printf.h"
 
+int check_specifier(va_list va, char c)
+{
+	int bytes_readen;
+
+	bytes_readen = 0;
+	if (c == 'c')
+		bytes_readen += ft_printfc(va_arg(va, int));
+	else if (c == 's')
+		bytes_readen += ft_printfs(va_arg(va, char *));
+	else if (c == 'd')
+		bytes_readen += ft_printfd(va_arg(va, int));
+	else if (c == 'i')
+		bytes_readen += ft_printfd(va_arg(va, int));
+	else if (c == '%')
+	{
+		write(1, "%", 1);
+		bytes_readen += 1;
+	}
+
+	return (bytes_readen);
 }
+
+int	ft_printf(const char *format, ...)
+{
+	int	i;
+	va_list va;
+	int	bytes_readen;
+
+	i = 0;
+	bytes_readen = 0;
+	va_start(va, format);
+	while (format[i])
+	{
+		if (format[i] == '%')
+		{
+			i++;
+			bytes_readen += check_specifier(va, format[i]);
+		}
+		else
+			bytes_readen += write(1, &format[i], 1);
+		i++;
+	}
+	va_end(va);
+	return (bytes_readen);
+}
+
+/* int main(int argc, char **argv)
+{
+	(void) argc;
+	(void) argv;
+	long d = 12;
+	ft_printf("ola, %d", d);
+}
+ */
